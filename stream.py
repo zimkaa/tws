@@ -26,7 +26,7 @@ async def main():
         async for event in streaming:
             print(f"type {type(event)} event {event}")
             producer.produce(
-                'registrations', str(event).encode(), callback=delivery_report,
+                'events', str(event).encode(), callback=delivery_report,
             )
             producer.flush()
 
