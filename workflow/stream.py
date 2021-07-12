@@ -11,7 +11,7 @@ async def main():
         await streaming.candle.subscribe(
             'BBG0013HGFT4', ti.CandleResolution.min3,
         )
-        producer = Producer({'bootstrap.servers': 'localhost:9092'})
+        producer = Producer({'bootstrap.servers': f'{config.HOST}:9092'})
 
         def delivery_report(err, msg):
             """ Called once for each message produced to indicate delivery result.
