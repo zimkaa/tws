@@ -4,4 +4,4 @@ COPY ./workflow .
 
 RUN python3 -m pip install -r requirements.txt
 
-ENTRYPOINT python3 stream.py
+ENTRYPOINT python3 stream_crypto.py

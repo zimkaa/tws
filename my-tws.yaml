@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: mytws
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mytws
@@ -17,17 +17,6 @@ spec:
       - name : tws
         image: myapp
         imagePullPolicy: Never
-        ports:
-        - containerPort: 9092
-          protocol: TCP
         env:
         - name: HOST
-          valueFrom:
-            secretKeyRef:
-              name: myapp
-              key: HOST
-        - name: TG_AP
-          valueFrom:
-            secretKeyRef:
-              name: myapp
-              key: TG_AP
+          value: "kafka.kafka-ca1"
