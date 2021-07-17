@@ -22,6 +22,7 @@ def main():
     while True:
         answer = requests.get(config.URL_GECKO, headers=config.HEADERS)
         time_stamp = time.time()
+        print(f"time_stamp {time_stamp}")
 
         producer = Producer({'bootstrap.servers': f'{config.HOST}:9092'})
 
@@ -37,7 +38,7 @@ def main():
             )
             producer.flush()
 
-        time.sleep(0.5)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
