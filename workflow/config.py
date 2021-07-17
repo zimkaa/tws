@@ -11,4 +11,8 @@ TG_AP = os.getenv('TG_AP', None)
 
 HEADERS = {"accept": "application/json"}
 
-URL = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2CEthereum%2CBinanceCoin%2CCardano&vs_currencies=usd'
+url_part_1 = "https://api.coingecko.com/api/v3/simple/price?"
+
+url_part_2 = "ids=bitcoin%2CEthereum%2CBinanceCoin%2CCardano&vs_currencies=usd"
+
+URL_GECKO = url_part_1 + url_part_2
