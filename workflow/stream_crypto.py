@@ -1,3 +1,4 @@
+import json
 import time
 import requests
 
@@ -19,16 +20,23 @@ def delivery_report(err, msg):
 
 def main():
     while True:
-        answer = requests.get(config.URL, headers=config.HEADERS)
-
-        print(answer.text)
+        answer = requests.get(config.URL_GECKO, headers=config.HEADERS)
+        time_stamp = time.time()
 
         producer = Producer({'bootstrap.servers': f'{config.HOST}:9092'})
 
-        producer.produce(
-            'events', answer.text.encode(), callback=delivery_report,
-        )
-        producer.flush()
+        data = json.loads(answer.text)
+
+        for key in data.keys():
+            write_data = json.dumps(
+                {'name': key, 'price': data[key]['usd'], 'ts': time_stamp},
+            )
+
+            producer.produce(
+                'events', write_data.encode(), callback=delivery_report,
+            )
+            producer.flush()
+
         time.sleep(0.5)
 
 
