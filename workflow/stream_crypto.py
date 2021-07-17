@@ -38,7 +38,7 @@ def main():
             )
             producer.flush()
 
-        time.sleep(1)
+        time.sleep(1.5)
 
 
 if __name__ == "__main__":
